@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="title" content="Flixxo" />
+    <meta name="image" content="%PUBLIC_URL%/favicon.png" />
+    <meta name="description" content="Community based video distribution." />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <title>Flixxo</title>
+  </head>
+
+  <body>
+    <div id="applixir_vanishing_div" hidden>
+      <iframe id="applixir_parent" allow="autoplay, fullscreen"></iframe>
+    </div>
+
+    <script type="application/javascript">
+      function adStatusCallback(status) {
+        if (status) console.log("Applixir status: " + status);
+      }
+
+      var options = {
+        zoneId: "2050", // The zone ID from the Applixir "Games" page (required)
+
+        adStatusCb: adStatusCallback, // The function name from above (optional)
+
+        fallback: 1 | 0, // display a banner ad if no videos are available (optional)
+      };
+
+      console.log("window", window);
+
+      const interval = setInterval(() => {
+        window.invokeApplixirVideoUnit(options);
+        clearInterval(interval);
+      }, 3000);
+    </script>
+
+    <script type="text/javascript" src="https://cdn.applixir.com/applixir.sdk3.0m.js"></script>
+  </body>
+</html>
